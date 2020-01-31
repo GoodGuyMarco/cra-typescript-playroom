@@ -6,6 +6,27 @@ module.exports = {
     '!**/node_modules'
   ],
   webpackConfig: () => ({
-    // Custom webpack config goes here...
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          include: /components/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-typescript',
+                '@babel/preset-react'
+              ]
+            }
+          }
+        }
+      ]
+    },
+    resolve: {
+      extensions: ['.js', '.ts', '.tsx']
+    }
   })
 };
